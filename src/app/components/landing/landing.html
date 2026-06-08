@@ -1,0 +1,21 @@
+@if (currentStep === 'auth') {
+    <app-auth-step (authCompleted)="onAuthCompleted($event)"></app-auth-step>
+} @else if (currentStep === 'displayName') {
+    <app-display-name-step></app-display-name-step>
+} @else if (currentStep === 'householdName') {
+    <app-household-name-step></app-household-name-step>
+} @else if (currentStep === 'recap') {
+    <app-recap-step></app-recap-step>
+} @else {
+    <div class="landing">
+        <span class="landing__deco">Heima</span>
+        <p class="landing__eyebrow">Your shared space</p>
+        <h1 class="landing__title">Home,<br>together.</h1>
+        <div class="landing__divider"></div>
+        <p class="landing__subtitle">Plan your days, share your life. One dashboard, two people.</p>
+        <div class="landing__actions">
+            <button class="btn-create" (click)="startFlow('creating')">Create a household</button>
+            <button class="btn-join" (click)="startFlow('joining')">Join a household</button>
+        </div>
+    </div>
+}
