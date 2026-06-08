@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Supabase } from '../../../../services/supabase';
 
 @Component({
   selector: 'app-auth-step',
@@ -8,14 +9,42 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './auth-step.scss',
 })
 export class AuthStep {
-  @Output() authCompleted = new EventEmitter<{email: string, password: string}>();
+  loading = false;
+
+  @Output() authCompleted = new EventEmitter<{ email: string; password: string }>();
 
   formData = {
     email: '',
-    password: ''
-  }
+    password: '',
+  };
 
-  submitData() {
-    this.authCompleted.emit({ email: this.formData.email, password: this.formData.password });
+  constructor(private readonly supabase: Supabase) {}
+
+  async submitData(): Promise<void> {
+    try {
+      this.loading = true;
+
+      const { error } = await this.supabase.signUpWithPassword(
+        this.formData.email,
+        this.formData.password
+      );
+
+      if (error) {
+        throw error;
+      }
+
+      this.authCompleted.emit({
+        email: this.formData.email,
+        password: this.formData.password,
+      });
+
+      alert('Account created. Check your email to confirm your account.');
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+    } finally {
+      this.loading = false;
+    }
   }
 }

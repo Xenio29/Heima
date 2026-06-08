@@ -3,14 +3,26 @@
         <div class="title">
             <p class="title-text">Create an Account</p>
         </div>
-        <div class="social-signup">
-            <!--Social sign ups here-->
-        </div>
-        <div class="separator"></div>
-        <div class="supabase-auth-form">
-                <input type="email" name="pmail" id="email" placeholder="Enter email..." [(ngModel)]="formData.email">
-                <input type="password" name="password" id="password" placeholder="Enter password..." [(ngModel)]="formData.password">
-                <button class="next-btn" (click)="submitData()">Next</button>
-        </div>
+        <form class="supabase-auth-form" #authForm="ngForm" (ngSubmit)="submitData()">
+            <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter email..."
+                [(ngModel)]="formData.email"
+                required
+                email
+            >
+            <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter password..."
+                [(ngModel)]="formData.password"
+                required
+                minlength="6"
+            >
+            <button class="next-btn" type="submit" [disabled]="authForm.invalid || loading">Next</button>
+        </form>
     </div>
 </div>
