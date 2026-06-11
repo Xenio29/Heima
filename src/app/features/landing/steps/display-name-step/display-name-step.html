@@ -1,1 +1,18 @@
-<p>display-name-step works!</p>
+<div class="display-name-window">
+    <div class="display-name-form-cont">
+        <div class="title">
+            <p class="title-text">Nom</p>
+        </div>
+        <form class="display-name-form" (ngSubmit)="submitData()">
+            <input
+                type="text"
+                name="display-name"
+                id="display-name"
+                placeholder="Entrer votre nom..."
+                [(ngModel)]="formData.displayName"
+                required
+            >
+            <button class="next-btn" type="submit">Suivant</button>
+        </form>
+    </div>
+</div>

@@ -10,8 +10,9 @@ import { Supabase } from '../../../../services/supabase';
 })
 export class AuthStep {
   loading = false;
+  userID = ''
 
-  @Output() authCompleted = new EventEmitter<{ email: string; password: string }>();
+  @Output() authCompleted = new EventEmitter<{ email: string, id: string}>();
 
   formData = {
     email: '',
@@ -24,7 +25,7 @@ export class AuthStep {
     try {
       this.loading = true;
 
-      const { error } = await this.supabase.signUpWithPassword(
+      const {data, error } = await this.supabase.signUpWithPassword(
         this.formData.email,
         this.formData.password
       );
@@ -33,9 +34,20 @@ export class AuthStep {
         throw error;
       }
 
+      if(data.user?.id === undefined) {
+        alert("Error with user ID fetching")
+      } else {
+        this.userID = data.user.id
+
+        this.authCompleted.emit({
+          email: this.formData.email,
+          id: this.userID
+        });
+      }
+
       this.authCompleted.emit({
         email: this.formData.email,
-        password: this.formData.password,
+        id: this.userID
       });
 
       alert('Account created. Check your email to confirm your account.');

@@ -1,1 +1,22 @@
-<p>recap-step works!</p>
+<div class="recap-window">
+    <div class="recap-container">
+        <div class="title">
+            <p class="title-text">Récapitulatif</p>
+        </div>
+        <div class="recap-content">
+            <div class="recap-field">
+                <span class="field-label">Email</span>
+                <span class="field-value">{{flowData.email}}</span>
+            </div>
+            <div class="recap-field">
+                <span class="field-label">Nom</span>
+                <span class="field-value">{{flowData.displayName}}</span>
+            </div>
+            <div class="recap-field">
+                <span class="field-label">Nom du foyer</span>
+                <span class="field-value">{{flowData.householdName}}</span>
+            </div>
+            <button class="confirm-btn">Confirmer</button>
+        </div>
+    </div>
+</div>

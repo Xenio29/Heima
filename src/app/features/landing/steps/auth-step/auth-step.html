@@ -1,14 +1,14 @@
 <div class="auth-window">
     <div class="auth-form">
         <div class="title">
-            <p class="title-text">Create an Account</p>
+            <p class="title-text">Créer un compte</p>
         </div>
         <form class="supabase-auth-form" #authForm="ngForm" (ngSubmit)="submitData()">
             <input
                 type="email"
                 name="email"
                 id="email"
-                placeholder="Enter email..."
+                placeholder="Entrer votre mail..."
                 [(ngModel)]="formData.email"
                 required
                 email
@@ -17,12 +17,12 @@
                 type="password"
                 name="password"
                 id="password"
-                placeholder="Enter password..."
+                placeholder="Entrer votre mot de passe..."
                 [(ngModel)]="formData.password"
                 required
                 minlength="6"
             >
-            <button class="next-btn" type="submit" [disabled]="authForm.invalid || loading">Next</button>
+            <button class="next-btn" type="submit" [disabled]="authForm.invalid || loading">Suivant</button>
         </form>
     </div>
 </div>

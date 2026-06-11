@@ -1,0 +1,95 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.recap-window {
+    padding: 40px 48px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    min-width: 340px;
+}
+
+.recap-container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.title {
+    .title-text {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2.75rem;
+        font-weight: 300;
+        color: antiquewhite;
+        margin: 0;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(255, 248, 240, 0.22);
+        letter-spacing: 0.02em;
+        line-height: 1;
+    }
+}
+
+.recap-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.recap-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+
+    // Pas de séparateur sous le dernier champ
+    &:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .field-label {
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.68rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: rgba(255, 248, 240, 0.5);
+    }
+
+    .field-value {
+        font-family: "DM Sans", sans-serif;
+        font-size: 1rem;
+        color: antiquewhite;
+    }
+}
+
+.confirm-btn {
+    margin-top: 8px;
+    width: 100%;
+    padding-block: 12px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    background-color: rgba(255, 248, 240, 0.85);
+    color: rgba(50, 40, 30, 0.85);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 148ms ease-in-out;
+    letter-spacing: 0.03em;
+
+    &:hover {
+        background-color: antiquewhite;
+        transform: scale(1.02);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+}

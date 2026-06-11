@@ -1,1 +1,33 @@
-<p>household-name-step works!</p>
+<div class="household-name-window">
+    <div class="household-name-form-cont">
+        <div class="title">
+            @if (action === 'creating') {
+                <p class="title-text">Nom du foyer</p>
+            } @else {
+                <p class="title-text">Code du foyer</p>
+            }
+        </div>
+        <form class="household-name-form" (ngSubmit)="submitData()">
+            @if (action === 'creating') {
+                <input
+                    type="text"
+                    name="household-name"
+                    id="household-name"
+                    placeholder="Entrer le nom..."
+                    [(ngModel)]="formData.householdName"
+                    required
+                >
+            } @else {
+                <input
+                    type="text"
+                    name="household-code"
+                    id="household-code"
+                    placeholder="Entrer le code..."
+                    [(ngModel)]="formData.joinCode"
+                    required
+                >
+            }
+            <button class="next-btn" type="submit">Suivant</button>
+        </form>
+    </div>
+</div>
