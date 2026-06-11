@@ -10,7 +10,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  
 
   &__deco {
     position: absolute;
@@ -41,11 +40,31 @@
     text-align: center;
   }
 
-  &__divider {
-    width: 1px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.25);
-    margin: 1.5rem auto 2rem;
+  &__typer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    margin: 1.75rem 0 2rem;
+    // Reserve height so layout never shifts
+    min-height: 1.5rem;
+  }
+
+  &__typer-text {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  &__typer-cursor {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.45);
+    animation: blink 0.75s step-end infinite; // ← step-end is the key
+    line-height: 1;
+    margin-top: -1px;
   }
 
   &__subtitle {
@@ -62,6 +81,11 @@
     display: flex;
     gap: 14px;
   }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
 .btn-create {

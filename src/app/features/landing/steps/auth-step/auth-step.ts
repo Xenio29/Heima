@@ -49,8 +49,7 @@ export class AuthStep {
         email: this.formData.email,
         id: this.userID
       });
-
-      alert('Account created. Check your email to confirm your account.');
+      
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);

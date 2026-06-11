@@ -11,7 +11,12 @@
         <span class="landing__deco">Heima</span>
         <p class="landing__eyebrow">Your shared space</p>
         <h1 class="landing__title">Home,<br>together.</h1>
-        <div class="landing__divider"></div>
+
+        <div class="landing__typer">
+            <span class="landing__typer-text">{{ typedText }}</span>
+            <span class="landing__typer-cursor">|</span>
+        </div>
+
         <p class="landing__subtitle">Plan your days, share your life. One dashboard, two people.</p>
         <div class="landing__actions">
             <button class="btn-create" (click)="startFlow('creating')">Create a household</button>
