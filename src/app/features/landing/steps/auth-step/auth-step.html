@@ -1,28 +1,36 @@
 <div class="auth-window">
-    <div class="auth-form">
+    <div class="auth-container">
         <div class="title">
             <p class="title-text">Créer un compte</p>
         </div>
-        <form class="supabase-auth-form" #authForm="ngForm" (ngSubmit)="submitData()">
-            <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Entrer votre mail..."
-                [(ngModel)]="formData.email"
-                required
-                email
-            >
-            <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Entrer votre mot de passe..."
-                [(ngModel)]="formData.password"
-                required
-                minlength="6"
-            >
-            <button class="next-btn" type="submit" [disabled]="authForm.invalid || loading">Suivant</button>
+        <form class="auth-form" #authForm="ngForm" (ngSubmit)="submitData()">
+            <div class="form-field">
+                <label class="field-label" for="email">Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="votre@email.fr"
+                    [(ngModel)]="formData.email"
+                    required
+                    email
+                >
+            </div>
+            <div class="form-field">
+                <label class="field-label" for="password">Mot de passe</label>
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    [(ngModel)]="formData.password"
+                    required
+                    minlength="6"
+                >
+            </div>
+            <button class="next-btn" type="submit" [disabled]="authForm.invalid || loading">
+                Suivant
+            </button>
         </form>
     </div>
 </div>

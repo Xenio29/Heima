@@ -5,7 +5,7 @@
 } @else if (currentStep === 'householdName') {
     <app-household-name-step [action]="flowType" (householdInfo)="onHouseholdCompleted($event)"></app-household-name-step>
 } @else if (currentStep === 'recap') {
-    <app-recap-step [flowType]="flowType" [flowData]="flowData"></app-recap-step>
+    <app-recap-step [flowType]="flowType" [flowData]="flowData" (confirmed)="OnRecapConfirmed()"></app-recap-step>
 } @else {
     <div class="landing">
         <span class="landing__deco">Heima</span>

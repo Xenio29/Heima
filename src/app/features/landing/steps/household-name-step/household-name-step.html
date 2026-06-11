@@ -1,5 +1,5 @@
 <div class="household-name-window">
-    <div class="household-name-form-cont">
+    <div class="household-name-container">
         <div class="title">
             @if (action === 'creating') {
                 <p class="title-text">Nom du foyer</p>
@@ -8,25 +8,29 @@
             }
         </div>
         <form class="household-name-form" (ngSubmit)="submitData()">
-            @if (action === 'creating') {
-                <input
-                    type="text"
-                    name="household-name"
-                    id="household-name"
-                    placeholder="Entrer le nom..."
-                    [(ngModel)]="formData.householdName"
-                    required
-                >
-            } @else {
-                <input
-                    type="text"
-                    name="household-code"
-                    id="household-code"
-                    placeholder="Entrer le code..."
-                    [(ngModel)]="formData.joinCode"
-                    required
-                >
-            }
+            <div class="form-field">
+                @if (action === 'creating') {
+                    <label class="field-label" for="household-name">Nom du foyer</label>
+                    <input
+                        type="text"
+                        name="household-name"
+                        id="household-name"
+                        placeholder="Les Dupont..."
+                        [(ngModel)]="formData.householdName"
+                        required
+                    >
+                } @else {
+                    <label class="field-label" for="household-code">Code d'invitation</label>
+                    <input
+                        type="text"
+                        name="household-code"
+                        id="household-code"
+                        placeholder="XXXXXXXX"
+                        [(ngModel)]="formData.joinCode"
+                        required
+                    >
+                }
+            </div>
             <button class="next-btn" type="submit">Suivant</button>
         </form>
     </div>

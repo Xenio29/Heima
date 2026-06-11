@@ -3,6 +3,7 @@ import { FlowData } from '../../../../models/flow-data';
 
 @Component({
   selector: 'app-recap-step',
+  standalone: true,
   imports: [],
   templateUrl: './recap-step.html',
   styleUrl: './recap-step.scss',

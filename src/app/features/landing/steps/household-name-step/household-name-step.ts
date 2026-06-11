@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-household-name-step',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './household-name-step.html',
   styleUrl: './household-name-step.scss',

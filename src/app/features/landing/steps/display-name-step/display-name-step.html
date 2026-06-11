@@ -1,17 +1,20 @@
 <div class="display-name-window">
-    <div class="display-name-form-cont">
+    <div class="display-name-container">
         <div class="title">
             <p class="title-text">Nom</p>
         </div>
         <form class="display-name-form" (ngSubmit)="submitData()">
-            <input
-                type="text"
-                name="display-name"
-                id="display-name"
-                placeholder="Entrer votre nom..."
-                [(ngModel)]="formData.displayName"
-                required
-            >
+            <div class="form-field">
+                <label class="field-label" for="display-name">Votre prénom</label>
+                <input
+                    type="text"
+                    name="display-name"
+                    id="display-name"
+                    placeholder="Comment vous appelez-vous ?"
+                    [(ngModel)]="formData.displayName"
+                    required
+                >
+            </div>
             <button class="next-btn" type="submit">Suivant</button>
         </form>
     </div>

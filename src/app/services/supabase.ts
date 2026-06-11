@@ -29,8 +29,24 @@ export class Supabase {
   profile(user: User) {
     return this.supabase
       .from('profiles')
-      .select('id, display_name, household_id')
+      .select('id, display-name, household_id')
       .eq('id', user.id)
+      .single();
+  }
+
+  householdByJoinCode(joinCode: string) {
+    return this.supabase
+      .from('households')
+      .select('*')
+      .eq('join_code', joinCode)
+      .single();
+  }
+
+  createHousehold(name: string, joinCode: string) {
+    return this.supabase
+      .from('households')
+      .insert([{ name, join_code: joinCode }])
+      .select()
       .single();
   }
 
@@ -56,9 +72,14 @@ export class Supabase {
   updateProfile(profile: Profile) {
     const update = {
       ...profile,
-      updated_at: new Date(),
     };
 
     return this.supabase.from('profiles').upsert(update);
   }
+
+  
+  public get client() {
+    return this.supabase;
+  }
+  
 }
