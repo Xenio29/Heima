@@ -94,7 +94,7 @@ export class Landing implements OnInit, OnDestroy {
   async getHouseholdName(joinCode: string): Promise<void> {
     const { data, error } = await this.supabase.householdByJoinCode(joinCode);
     if (error) {
-      console.error('Error:', error);
+      alert('Error:' + error);
       this.flowData.householdName = 'Not found';
       return;
     }
