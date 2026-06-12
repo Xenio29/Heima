@@ -1,6 +1,6 @@
 :host {
   display: block;
-  height: 100%;
+  height: 100svh;
 }
 
 .landing {
@@ -14,11 +14,30 @@
   &__deco {
     position: absolute;
     top: 2rem;
-    right: 2.5rem;
+    left: 2.5rem;
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.35);
+  }
+
+  &__login {
+    position: absolute;
+    top: 2rem;
+    right: 2.5rem;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 100px;
+    padding: 13px 32px;
+    cursor: pointer;
+    transition: all 148ms ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   &__eyebrow {
@@ -51,17 +70,18 @@
   }
 
   &__typer-text {
-    font-size: 13px;
+    font-size: 23px;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.65);
   }
 
   &__typer-cursor {
-    font-size: 15px;
+    font-size: 25px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.65);
     animation: blink 0.75s step-end infinite; // ← step-end is the key
     line-height: 1;
     margin-top: -1px;
@@ -97,6 +117,11 @@
   border-radius: 100px;
   padding: 13px 32px;
   cursor: pointer;
+  transition: all 148ms ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .btn-join {
@@ -108,4 +133,9 @@
   border-radius: 100px;
   padding: 13px 32px;
   cursor: pointer;
+  transition: all 148ms ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }

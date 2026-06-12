@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { AuthStep } from '../../features/landing/steps/auth-step/auth-step';
 import { DisplayNameStep } from '../../features/landing/steps/display-name-step/display-name-step';
 import { HouseholdNameStep } from '../../features/landing/steps/household-name-step/household-name-step';
@@ -6,11 +6,12 @@ import { RecapStep } from '../../features/landing/steps/recap-step/recap-step';
 import { FlowData } from '../../models/flow-data';
 import { Supabase } from '../../services/supabase';
 import { Router } from '@angular/router';
+import { LoginStep } from '../../features/landing/steps/login-step/login-step';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [AuthStep, DisplayNameStep, HouseholdNameStep, RecapStep],
+  imports: [AuthStep, DisplayNameStep, HouseholdNameStep, RecapStep, LoginStep],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
 })
@@ -30,7 +31,7 @@ export class Landing implements OnInit, OnDestroy {
 
   flowType!: 'creating' | 'joining';
 
-  currentStep: 'start' | 'auth' | 'displayName' | 'householdName' | 'recap' = 'start';
+  currentStep: 'logging' | 'start' | 'auth' | 'displayName' | 'householdName' | 'recap' = 'start';
 
   // --- Typing animation ---
   private readonly words = ['Planning', 'Groceries', 'Meals', 'Chores', 'Sports', 'Assistant'];
@@ -39,7 +40,7 @@ export class Landing implements OnInit, OnDestroy {
   private isDeleting = false;
   private timeoutId: ReturnType<typeof setTimeout> | null = null;
 
-  typedText = '';
+  typedText = signal('');
 
   ngOnInit(): void {
     this.tick();
@@ -65,7 +66,7 @@ export class Landing implements OnInit, OnDestroy {
       this.charIndex++;
     }
 
-    this.typedText = currentWord.slice(0, this.charIndex);
+    this.typedText.set(currentWord.slice(0, this.charIndex));
 
     let delay: number;
 
@@ -89,6 +90,11 @@ export class Landing implements OnInit, OnDestroy {
     this.stopTyping(); // ← stop animation when user starts a flow
     this.flowType = flowType;
     this.currentStep = 'auth';
+  }
+
+  login(): void {
+    this.stopTyping();
+    this.currentStep = 'logging'
   }
 
   async getHouseholdName(joinCode: string): Promise<void> {

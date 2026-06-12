@@ -1,0 +1,39 @@
+<div class="login-window">
+    <div class="login-container">
+        <div class="title">
+            <p class="title-text">Se connecter</p>
+        </div>
+        <form class="login-form" #loginForm="ngForm" (ngSubmit)="submitData()">
+            <div class="form-field">
+                <label class="field-label" for="email">Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="votre@email.fr"
+                    [(ngModel)]="formData.email"
+                    required
+                    email
+                >
+            </div>
+            <div class="form-field">
+                <label class="field-label" for="password">Mot de passe</label>
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    [(ngModel)]="formData.password"
+                    required
+                    minlength="6"
+                >
+            </div>
+            <div class="form-field">
+                <label for="forgot-password" class="field-label"><a href="#">Mot de passe oublié ?</a></label>
+            </div>
+            <button class="next-btn" type="submit" [disabled]="loginForm.invalid || loading">
+                Connexion
+            </button>
+        </form>
+    </div>
+</div>

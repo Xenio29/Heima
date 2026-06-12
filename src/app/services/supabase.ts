@@ -58,6 +58,12 @@ export class Supabase {
     return this.supabase.auth.signInWithOtp({ email });
   }
 
+  async signInWithPassword(email: string, password: string) {
+    const {data, error} = await this.supabase.auth.signInWithPassword({email, password})
+
+    return {data, error}
+  }
+
   signUpWithPassword(email: string, password: string) {
     return this.supabase.auth.signUp({
       email,
