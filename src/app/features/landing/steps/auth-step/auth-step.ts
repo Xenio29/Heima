@@ -49,6 +49,8 @@ export class AuthStep {
         email: this.formData.email,
         id: this.userID
       });
+
+      localStorage.setItem('userId', this.userID);
       
     } catch (error) {
       if (error instanceof Error) {

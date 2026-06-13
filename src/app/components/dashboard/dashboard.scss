@@ -1,0 +1,353 @@
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+  .welcome-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem 0;
+
+    .user-name {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: #444;
+    font-weight: 400;
+    margin: 0;
+  }
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+// ---- Slider ----
+
+.controls-section {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.slider-container {
+  max-width: 600px;
+  margin: 0 auto;
+
+  .slider-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 1.1rem;
+
+    .threshold-value {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 1rem;
+    }
+  }
+
+  .importance-slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #e0e0e0 0%, #667eea 100%);
+    outline: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+
+    &::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+      border: none;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #666;
+  }
+}
+
+// ---- Calendar ----
+
+.calendar-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.day-column {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.day-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  flex-shrink: 0;
+
+  h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .date {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.95;
+  }
+}
+
+// ---- Timeline ----
+
+.timeline {
+  position: relative;
+  height: 700px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  // Prevent text selection while dragging
+  user-select: none;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(241, 241, 241, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.5);
+    border-radius: 4px;
+
+    &:hover {
+      background: rgba(85, 85, 85, 0.8);
+    }
+  }
+}
+
+.hour-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  height: 1440px;
+}
+
+.hour-marker {
+  height: 60px;
+  position: relative;
+
+  .hour-label {
+    position: absolute;
+    left: 1rem;
+    top: -0.6rem;
+    font-size: 0.75rem;
+    color: #666;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0 0.25rem;
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  .hour-line {
+    position: absolute;
+    top: 0;
+    left: 4rem;
+    right: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+}
+
+// ---- Now Line ----
+
+.now-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+
+  .now-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e53935;
+    flex-shrink: 0;
+    margin-left: 3.5rem;
+    box-shadow: 0 0 6px rgba(229, 57, 53, 0.6);
+  }
+
+  .now-bar {
+    flex: 1;
+    height: 2px;
+    background: #e53935;
+    margin-right: 1rem;
+    box-shadow: 0 0 6px rgba(229, 57, 53, 0.4);
+  }
+}
+
+// ---- Tasks ----
+
+.tasks-container {
+  position: relative;
+  height: 1440px;
+}
+
+.task-card {
+  position: absolute;
+  left: 4rem;
+  right: 1rem;
+  background: white;
+  border-left: 4px solid #667eea;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  min-height: 50px;
+  z-index: 1;
+
+  &:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .task-time {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .task-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+  }
+
+  .task-importance {
+    .importance-badge {
+      display: inline-block;
+      background: #f0f0f0;
+      color: #333;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.no-tasks {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #999;
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+// ---- Responsive ----
+
+@media (max-width: 968px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .calendar-section {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    .welcome-text {
+      font-size: 1.75rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .timeline {
+    height: 500px;
+  }
+}

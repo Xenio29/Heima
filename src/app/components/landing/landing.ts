@@ -19,7 +19,7 @@ export class Landing implements OnInit, OnDestroy {
 
   router = inject(Router);
 
-  flowData: FlowData = {
+  public flowData: FlowData = {
     userID: '',
     email: '',
     displayName: '',
@@ -28,6 +28,8 @@ export class Landing implements OnInit, OnDestroy {
   };
 
   private supabase = inject(Supabase);
+
+  now = new Date();
 
   flowType!: 'creating' | 'joining';
 
@@ -151,6 +153,7 @@ export class Landing implements OnInit, OnDestroy {
       const { error: profileError } = await this.supabase.updateProfile({
         id: this.flowData.userID,
         display_name: this.flowData.displayName,
+        created_at: this.now.toISOString(),
         household_id: householdId
       });
 

@@ -15,7 +15,7 @@
     position: absolute;
     top: 2rem;
     left: 2.5rem;
-    font-size: 11px;
+    font-size: clamp(10px, 0.8vw, 12px);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.35);
@@ -25,7 +25,7 @@
     position: absolute;
     top: 2rem;
     right: 2.5rem;
-    font-size: 14px;
+    font-size: clamp(12px, 1.2vw, 14px);
     font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
     background: rgba(255, 255, 255, 0.12);
@@ -41,7 +41,7 @@
   }
 
   &__eyebrow {
-    font-size: 11px;
+    font-size: clamp(10px, 0.85vw, 11px);
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -51,7 +51,7 @@
 
   &__title {
     font-family: 'Cormorant Garamond', sans-serif;
-    font-size: 108px;
+    font-size: clamp(48px, 12vw, 108px);
     font-weight: 300;
     color: #fff;
     margin: 0 0 0.5rem;
@@ -70,7 +70,7 @@
   }
 
   &__typer-text {
-    font-size: 23px;
+    font-size: clamp(16px, 2.5vw, 23px);
     font-family: 'DM Sans', sans-serif;
     font-weight: 400;
     letter-spacing: 0.2em;
@@ -79,16 +79,16 @@
   }
 
   &__typer-cursor {
-    font-size: 25px;
+    font-size: clamp(20px, 2.8vw, 25px);
     font-weight: 300;
     color: rgba(255, 255, 255, 0.65);
-    animation: blink 0.75s step-end infinite; // ← step-end is the key
+    animation: blink 0.75s step-end infinite;
     line-height: 1;
     margin-top: -1px;
   }
 
   &__subtitle {
-    font-size: 15px;
+    font-size: clamp(13px, 1.8vw, 15px);
     font-weight: 300;
     color: rgba(255, 255, 255, 0.7);
     margin: 0 0 3rem;
@@ -109,7 +109,7 @@
 }
 
 .btn-create {
-  font-size: 14px;
+  font-size: clamp(12px, 1.2vw, 14px);
   font-weight: 500;
   color: #fff;
   background: #1a3a7a;
@@ -125,7 +125,7 @@
 }
 
 .btn-join {
-  font-size: 14px;
+  font-size: clamp(12px, 1.2vw, 14px);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.9);
   background: rgba(255, 255, 255, 0.12);

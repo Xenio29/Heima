@@ -1,1 +1,131 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <h1 class="welcome-text">
+      Welcome to Heima, <span class="user-name">{{ profile()?.display_name || 'User' }}</span>
+    </h1>
+    <p class="subtitle">Your AI-powered calendar planner for a balanced life</p>
+  </header>
+
+  <!-- Main Content -->
+  <div class="dashboard-content">
+
+    <!-- Importance Slider -->
+    <div class="controls-section">
+      <div class="slider-container">
+        <label for="importance-slider" class="slider-label">
+          <span>Importance Threshold</span>
+          <span class="threshold-value">{{ importanceThreshold() }}</span>
+        </label>
+        <input
+          type="range"
+          id="importance-slider"
+          min="1"
+          max="10"
+          [value]="importanceThreshold()"
+          (input)="onSliderChange($event)"
+          class="importance-slider"
+        />
+        <div class="slider-labels">
+          <span>Less Important</span>
+          <span>More Important</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="calendar-section">
+
+      <!-- Today -->
+      <div class="day-column">
+        <div class="day-header">
+          <h2>Today</h2>
+          <p class="date">{{ formatDate(today) }}</p>
+        </div>
+        <div 
+          class="timeline"
+          #timeline
+          (mousedown)="onMouseDown($event, timeline)"
+        >
+          <div class="hour-markers">
+            @for (hour of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]; track hour) {
+              <div class="hour-marker">
+                <span class="hour-label">{{ hour.toString().padStart(2, '0') }}:00</span>
+                <div class="hour-line"></div>
+              </div>
+            }
+          </div>
+
+          <!-- Now Line (only on today) -->
+          @if (showNowLine()) {
+            <div class="now-line" [style.top.px]="nowPosition()">
+              <div class="now-dot"></div>
+              <div class="now-bar"></div>
+            </div>
+          }
+
+          <div class="tasks-container">
+            @for (task of getTasksForDay(today); track task.id) {
+              <div
+                class="task-card"
+                [style.top]="getTaskTopPosition(task)"
+                [style.border-left-color]="'hsl(' + (task.importance * 1.2) + ', 70%, 50%)'"
+              >
+                <div class="task-time">{{ getTaskTime(task) }}</div>
+                <div class="task-title">{{ task.title }}</div>
+                <div class="task-importance">
+                  <span class="importance-badge">{{ task.importance }}</span>
+                </div>
+              </div>
+            }
+            @empty {
+              <div class="no-tasks">No tasks scheduled</div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Tomorrow -->
+      <div class="day-column">
+        <div class="day-header">
+          <h2>Tomorrow</h2>
+          <p class="date">{{ formatDate(tomorrow) }}</p>
+        </div>
+        <div
+          class="timeline"
+          #timeline
+          (mousedown)="onMouseDown($event, timeline)"
+        >
+          <div class="hour-markers">
+            @for (hour of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]; track hour) {
+              <div class="hour-marker">
+                <span class="hour-label">{{ hour.toString().padStart(2, '0') }}:00</span>
+                <div class="hour-line"></div>
+              </div>
+            }
+          </div>
+
+          <div class="tasks-container">
+            @for (task of getTasksForDay(tomorrow); track task.id) {
+              <div
+                class="task-card"
+                [style.top]="getTaskTopPosition(task)"
+                [style.border-left-color]="'hsl(' + (task.importance * 1.2) + ', 70%, 50%)'"
+              >
+                <div class="task-time">{{ getTaskTime(task) }}</div>
+                <div class="task-title">{{ task.title }}</div>
+                <div class="task-importance">
+                  <span class="importance-badge">{{ task.importance }}</span>
+                </div>
+              </div>
+            }
+            @empty {
+              <div class="no-tasks">No tasks scheduled</div>
+            }
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
